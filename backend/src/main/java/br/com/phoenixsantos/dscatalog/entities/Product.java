@@ -30,7 +30,7 @@ public class Product implements Serializable {
 	@Column(columnDefinition = "TEXT")
 	private String description;
 	private Double price;
-	private String IMG_URL;
+	private String img_Url;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant date;
@@ -41,65 +41,86 @@ public class Product implements Serializable {
 	inverseJoinColumns = @JoinColumn(name= "category_id"))
 	Set<Category> categories = new HashSet<>();
 	
-	
-	
-	public Product(Long id, String name, String description, Double price, String IMG_URL, Instant date) {
-		
-		this.id = id;
-		this.name = name;
-		this.description = description;
-		this.price = price;
-		this.IMG_URL = IMG_URL;
-		this.date = date;
-	}
-
-	
-	
 	public Product() {
 		
 	}
 	
 	
 	
+	public Product(Long id, String name, String description, Double price, String img_Url, Instant date) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.img_Url = img_Url;
+		this.date = date;
+	}
+
+
+
 	public Long getId() {
 		return id;
 	}
+
+
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
+
+
 	public String getName() {
 		return name;
 	}
+
+
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
+
+
 	public String getDescription() {
 		return description;
 	}
+
+
 
 	public void setDescription(String description) {
 		this.description = description;
 	}
 
+
+
 	public Double getPrice() {
 		return price;
 	}
+
+
 
 	public void setPrice(Double price) {
 		this.price = price;
 	}
 
-	
-	public Instant getDate() {
-		return date;
+
+
+	public String getImg_Url() {
+		return img_Url;
 	}
 
-	public Set<Category> getCategories() {
-		return categories;
+
+
+	public void setImg_Url(String img_Url) {
+		this.img_Url = img_Url;
+	}
+
+
+
+	public Instant getDate() {
+		return date;
 	}
 
 
@@ -110,9 +131,14 @@ public class Product implements Serializable {
 
 
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
+	public Set<Category> getCategories() {
+		return categories;
+	}
+
+
+
+	public void setCategories(Set<Category> categories) {
+		this.categories = categories;
 	}
 
 
@@ -131,15 +157,8 @@ public class Product implements Serializable {
 
 
 
-	public String getIMG_URL() {
-		return IMG_URL;
-	}
 
 
-
-	public void setIMGURL(String iMG_URL) {
-		IMG_URL = iMG_URL;
-	}
 
 	
 
