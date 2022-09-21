@@ -1,0 +1,146 @@
+package br.com.phoenixsantos.dscatalog.entities;
+
+import java.io.Serializable;
+import java.time.Instant;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="tb_product")
+public class Product implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String name;
+	
+	@Column(columnDefinition = "TEXT")
+	private String description;
+	private Double price;
+	private String IMG_URL;
+	
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	private Instant date;
+	
+	@ManyToMany
+	@JoinTable(name = "tb_product_category",
+	joinColumns = @JoinColumn(name = "product_id"),
+	inverseJoinColumns = @JoinColumn(name= "category_id"))
+	Set<Category> categories = new HashSet<>();
+	
+	
+	
+	public Product(Long id, String name, String description, Double price, String IMG_URL, Instant date) {
+		
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.price = price;
+		this.IMG_URL = IMG_URL;
+		this.date = date;
+	}
+
+	
+	
+	public Product() {
+		
+	}
+	
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	
+	public Instant getDate() {
+		return date;
+	}
+
+	public Set<Category> getCategories() {
+		return categories;
+	}
+
+
+
+	public void setDate(Instant date) {
+		this.date = date;
+	}
+
+
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		return Objects.equals(id, other.id);
+	}
+
+
+
+	public String getIMG_URL() {
+		return IMG_URL;
+	}
+
+
+
+	public void setIMGURL(String iMG_URL) {
+		IMG_URL = iMG_URL;
+	}
+
+	
+
+}
