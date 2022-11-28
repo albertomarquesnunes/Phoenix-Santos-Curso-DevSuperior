@@ -28,12 +28,12 @@ public class ResourceExceptionHandler {
 	}
 	
 	@ExceptionHandler(DatabaseException.class)
-	public ResponseEntity<StandardError> DatabaseException(ResourceNotFoundException e, HttpServletRequest request){
+	public ResponseEntity<StandardError> databaseException(DatabaseException e, HttpServletRequest request){
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		StandardError err = new StandardError();
 		err.setTimestam(Instant.now());
 		err.setStatus(status.value());
-		err.setError("Databese exception");
+		err.setError("Database Integrity Violation");
 		err.setMessage(e.getMessage());
 		err.setPath(request.getRequestURI());
 		return ResponseEntity.status(status).body(err);
