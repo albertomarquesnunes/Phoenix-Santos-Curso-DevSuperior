@@ -1,5 +1,8 @@
 package br.com.phoenixsantos.dscatalog.dto;
 
+import br.com.phoenixsantos.dscatalog.services.validation.UserInsertValid;
+
+@UserInsertValid
 public class UserInsertDTO extends UserDTO{
 
 	private static final long serialVersionUID = 1L;
